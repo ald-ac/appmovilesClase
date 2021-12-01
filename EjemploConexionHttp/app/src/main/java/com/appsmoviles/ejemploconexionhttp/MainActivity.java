@@ -14,7 +14,6 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     TextView tv1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,11 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
         Tarea t = new Tarea();
         t.execute("http://huasteco.tiburcio.mx/pmarvel.php?id=mv003");
-
     }
 
     class Tarea extends AsyncTask<String, Void, String> {
-
         @Override
         protected String doInBackground(String... strings) {
             return ConexionWeb(strings[0]);

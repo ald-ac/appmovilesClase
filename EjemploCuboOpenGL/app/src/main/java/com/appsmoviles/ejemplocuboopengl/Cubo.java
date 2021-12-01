@@ -8,95 +8,183 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class Cubo {
    private FloatBuffer vertexBuffer;  // Buffer for vertex-array
-
+    private float [] cafe = {0.25f, 0.1f, 0.1f, 1.0f} ;
 
    private float[] vertices = {
-    /*
-       -1.0f,  1.0f,  -1.0f,
-        1.0f,  1.0f,  1.0f,
-        1.0f,  1.0f,  -1.0f,
+           //ACB
+           1.0f,-1.0f,1.0f,
+           -1.0f,-1.0f,-1.0f,
+           1.0f,-1.0f,-1.0f,
 
-       -1.0f, 1.0f, -1.0f,
-       -1.0f,  1.0f,  1.0f,
-        1.0f, 1.0f,  1.0f,
+           //ADC
+           1.0f,-1.0f,1.0f,
+           -1.0f,-1.0f,1.0f,
+           -1.0f,-1.0f,-1.0f,
 
-        -1.0f, 1.0f, -1.0f,
-        1.0f,1.0f,-1.0f,
-        1.0f,-1.0f,-1.0f,
+           //ABE
+           1.0f,-1.0f,1.0f,
+           1.0f,-1.0f,-1.0f,
+           1.0f,2.0f,1.0f,
 
-        -1.0f, 1.0f, -1.0f,
-         1.0f,-1.0f,-1.0f,
-         -1.0f,-1.0f,-1.0f,
+           //EBF
+           1.0f,2.0f,1.0f,
+           1.0f,-1.0f,-1.0f,
+           1.0f,2.0f,-1.0f,
 
-        -1.0f, 1.0f, -1.0f,
-        -1.0f,-1.0f,-1.0f,
-        -1.0f,1.0f,1.0f,
+           //AHD
+           1.0f,-1.0f,1.0f,
+           -1.0f,2.0f,1.0f,
+           -1.0f,-1.0f,1.0f,
 
+           //AEH
+           1.0f,-1.0f,1.0f,
+           1.0f,2.0f,1.0f,
+           -1.0f,2.0f,1.0f,
 
-        -1.0f,1.0f,1.0f,
-        -1.0f,-1.0f,-1.0f,
-        -1.0f,-1.0f,1.0f,
+           //GFC
+           -1.0f,2.0f,-1.0f,
+           1.0f,2.0f,-1.0f,
+           -1.0f,-1.0f,-1.0f,
 
+           //FBC
+           1.0f,2.0f,-1.0f,
+           1.0f,-1.0f,-1.0f,
+           -1.0f,-1.0f,-1.0f,
 
-       1.0f,1.0f,1.0f,
-       -1.0f,1.0f,1.0f,
-        1.0f,-1.0f,1.0f,
+           //HGC
+           -1.0f,2.0f,1.0f,
+           -1.0f,2.0f,-1.0f,
+           -1.0f,-1.0f,-1.0f,
 
-       -1.0f,1.0f,1.0f,
-       -1.0f,-1.0f,1.0f,
-       1.0f,-1.0f,1.0f,
+           //HCD
+           -1.0f,2.0f,1.0f,
+           -1.0f,-1.0f,-1.0f,
+           -1.0f,-1.0f,1.0f,
 
-       1.0f,1.0f,-1.0f,
-       1.0f,1.0f,1.0f,
-       1.0f,-1.0f,1.0f,
+           //PRIMER PIRAMIDE
+           //KJI
+           -2.0f,1.0f,-2.0f,
+           2.0f,1.0f,-2.0f,
+           2.0f,1.0f,2.0f,
 
-       1.0f,1.0f,-1.0f,
-       1.0f,-1.0f,1.0f,
-       1.0f,-1.0f,-1.0f,
+           //ILK
+           2.0f,1.0f,2.0f,
+           -2.0f,1.0f,2.0f,
+           -2.0f,1.0f,-2.0f,
 
-       -1.0f,-1.0f,-1.0f,
-       1.0f,-1.0f,-1.0f,
-       -1.0f,-1.0f,1.0f,
+           //MIJ
+           0.0f,3.0f,0.0f,
+           2.0f,1.0f,2.0f,
+           2.0f,1.0f,-2.0f,
 
-       1.0f,-1.0f,-1.0f,
-       1.0f,-1.0f,1.0f,
-       -1.0f,-1.0f,1.0f */
-        //ACB
-           4.0f,0.0f,0.0f,
-           0.0f,0.0f,-2.0f,
-           0.0f,0.0f,2.0f,
+           //MKJ
+           0.0f,3.0f,0.0f,
+           2.0f,1.0f,-2.0f,
+           -2.0f,1.0f,-2.0f,
 
-        //DFE
-           0.0f,2.0f,0.0f,
-           0.0f,0.0f,0.0f,
-           1.0f,0.0f,0.0f,
+            //MKL
+           0.0f,3.0f,0.0f,
+           -2.0f,1.0f,-2.0f,
+           -2.0f,1.0f,2.0f,
 
-        //ABC
-           4.0f,0.0f,0.0f,
-           0.0f,0.0f,2.0f,
-           0.0f,0.0f,-2.0f,
+           //MLI
+           0.0f,3.0f,0.0f,
+           -2.0f,1.0f,2.0f,
+           2.0f,1.0f,2.0f,
 
-        //DEF
-           0.0f,2.0f,0.0f,
-           1.0f,0.0f,0.0f,
-           0.0f,0.0f,0.0f,
+           //SEGUNDA PIRAMIDE
+           //KJI
+           -1.5f,2.0f,-1.5f,
+           1.5f,2.0f,-1.5f,
+           1.5f,2.0f,1.5f,
 
+           //ILK
+           1.5f,2.0f,1.5f,
+           -1.5f,2.0f,1.5f,
+           -1.5f,2.0f,-1.5f,
+
+           //MIJ
+           0.0f,4.0f,0.0f,
+           1.5f,2.0f,1.5f,
+           1.5f,2.0f,-1.5f,
+
+           //MKJ
+           0.0f,4.0f,0.0f,
+           1.5f,2.0f,-1.5f,
+           -1.5f,2.0f,-1.5f,
+
+           //MKL
+           0.0f,4.0f,0.0f,
+           -1.5f,2.0f,-1.5f,
+           -1.5f,2.0f,1.5f,
+
+           //MLI
+           0.0f,4.0f,0.0f,
+           -1.5f,2.0f,1.5f,
+           1.5f,2.0f,1.5f,
+
+           //TERCERA PIRAMIDE
+           //KJI
+           -1.0f,3.0f,-1.0f,
+           1.0f,3.0f,-1.0f,
+           1.0f,3.0f,1.0f,
+
+           //ILK
+           1.0f,3.0f,1.0f,
+           -1.0f,3.0f,1.0f,
+           -1.0f,3.0f,-1.0f,
+
+           //MIJ
+           0.0f,5.0f,0.0f,
+           1.0f,3.0f,1.0f,
+           1.0f,3.0f,-1.0f,
+
+           //MKJ
+           0.0f,5.0f,0.0f,
+           1.0f,3.0f,-1.0f,
+           -1.0f,3.0f,-1.0f,
+
+           //MKL
+           0.0f,5.0f,0.0f,
+           -1.0f,3.0f,-1.0f,
+           -1.0f,3.0f,1.0f,
+
+           //MLI
+           0.0f,5.0f,0.0f,
+           -1.0f,3.0f,1.0f,
+           1.0f,3.0f,1.0f,
    };
 
    private float[][] colors = {  // Colors of the 5 vertices in RGBA
-      {0.0f, 0.0f, 1.0f, 1.0f},  // 0. blue
-           {0.0f, 1.0f, 1.0f, 1.0f},  // 0. blue
+            cafe,
+           cafe,
+           cafe,
+           cafe,
+           cafe,
+           cafe,
+           cafe,
+           cafe,
+           cafe,
+           cafe,
       {0.0f, 1.0f, 0.0f, 1.0f},  // 1. green
-           {0.0f, 1.0f, 0.0f, 1.0f}//,  // 1. green
-      //{1.0f, 0.0f, 0.0f, 1.0f},  // 2. red
-      //     {1.0f, 0.0f, 0.0f, 1.0f},  // 2. red
-      //{1.0f, 0.5f, 0.5f, 1.0f},  // 3. pink
-      //     {1.0f, 0.5f, 0.5f, 1.0f},  // 3. pink
-      //{1.0f, 1.0f, 1.0f, 1.0f},  // 4. white
-      //     {1.0f, 1.0f, 1.0f, 1.0f},  // 4. white
-      //{0.5f, 1.0f, 0.5f, 1.0f},
-           //{0.5f, 1.0f, 0.5f, 1.0f}
-   };  // 5. white
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+           {0.0f, 1.0f, 0.0f, 1.0f},//,  // 1. green
+   };
 
 
    // Constructor - Set up the buffers
@@ -120,7 +208,7 @@ public class Cubo {
 	      gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 
 	      // Render all the faces
-	      for (int face = 0; face < 4; face++) {
+	      for (int face = 0; face < 28; face++) {
 	         // Set the color for each of the faces
 	         gl.glColor4f(colors[face][0], colors[face][1], colors[face][2], colors[face][3]);
 	         // Draw the primitive from the vertex-array directly

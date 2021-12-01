@@ -13,10 +13,8 @@ import android.opengl.GLU;
 
   
 public class MyGLRenderer implements GLSurfaceView.Renderer{
-   
    private Cubo cubo;    // (NEW)
 
-   
    float angulo = 0; // Rotational angle in degree for pyramid (NEW)
    float velocidad = 4.0f; // Rotational speed for pyramid (NEW)
    int signo=0;
